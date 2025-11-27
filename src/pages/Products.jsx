@@ -17,7 +17,7 @@ export default function Products() {
       title: "Cable Jointing Kits",
       desc: "High-quality heat shrink and cold shrink jointing kits for LT, HT, and XLPE cables ensuring reliable and long-lasting electrical insulation.",
       img: "/products/jointingkits.png",
-      brands: ["Elechem"],
+      brands: ["Elechem", "Denson", "Raychem"],
     },
     {
       title: "Lighting Solutions",
@@ -35,7 +35,7 @@ export default function Products() {
       title: "Motors, Submersible Pumps & Starters",
       desc: "High-performance electric motors, submersible pumps, DOL/Star-Delta motor starters, and changeovers for domestic and industrial applications.",
       img: "/products/motors.png",
-      brands: ["Havells", "Bentex", "Crompton", "Kirloskar"],
+      brands: ["Havells", "Crompton", "Kirloskar", "Bentex"],
     },
     {
       title: "Modular Switches & Sockets",
@@ -47,13 +47,13 @@ export default function Products() {
       title: "Industrial Accessories & Fittings",
       desc: "Comprehensive range of conduit pipes, connectors, junction boxes, lugs, and all essential electrical accessories.",
       img: "/products/industrial.png",
-      brands: ["Bentex", "Schneider Electric", "Havells"],
+      brands: ["Tekson", "Havells", "Schneider", "L&T"],
     },
     {
       title: "Line Materials & Industrial Supplies",
       desc: "All types of line materials for commercial, electrical, and industrial projects supplied across Jammu & Kashmir.",
       img: "/products/line.png",
-      brands: ["Schneider", "Anchor by Panasonic", "L&T Electrical and Automation"],
+      brands: ["Schneider", "Anchor by Panasonic", "L&T Electrical and Automation","Havells"],
     },
   ];
 

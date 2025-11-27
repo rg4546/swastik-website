@@ -12,7 +12,7 @@ export default function ClientsBrands() {
     { name: "Bajaj", img: "/brands/bajaj.png" },
     { name: "Orient", img: "/brands/orient.png" },
     { name: "L&T", img: "/brands/l&t.png" },
-    { name: "Bentex", img: "/brands/bentex.png" },
+    { name: "Elechem", img: "/brands/elcehem.png" },
     { name: "Crompton", img: "/brands/crompton.png" },
   ];
 

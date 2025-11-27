@@ -4,6 +4,14 @@ import { motion } from "framer-motion";
 import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 
 export default function Contact() {
+  // maps.app short link (your provided location)
+  const mapsAppLink = "https://maps.app.goo.gl/UyFoQiQMhNz8w1b17";
+
+  // A reliable embed fallback: use Google Maps with the short link as the q parameter.
+  // This generally works as an embed and keeps map visible inside iframe.
+  // If Google blocks embedding for that short URL, the "Open in Google Maps" button will always open the correct native map.
+  const embedSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapsAppLink)}&output=embed`;
+
   return (
     <>
       <Helmet>
@@ -87,15 +95,15 @@ export default function Contact() {
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-center gap-3">
                   <FaMapMarkerAlt className="text-brand" />
-                  Swastik Electric co.
-                  Purmandal, morh, Chak Ratnu, Jammu and Kashmir 180010
+                  Swastik Electric Co.
+                  Purmandal, Morh, Chak Ratnu, Jammu and Kashmir 180010
                 </li>
                 <li className="flex items-center gap-3">
                   <FaPhoneAlt className="text-brand" /> +91 95968 99238, +91 96221 28402, +91 99060 07263
                 </li>
                 <li className="flex items-center gap-3">
                   <FaEnvelope className="text-brand" />
-                  swastikelectric238@gmail.com
+                  info@swastikelectric.in
                 </li>
               </ul>
             </div>
@@ -103,14 +111,24 @@ export default function Contact() {
             {/* Google Map Embed */}
             <div className="rounded-2xl overflow-hidden border border-brand/30 shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2643.7965082290285!2d74.88998967630403!3d32.68618937366728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391e8536e800edc9%3A0xd63f22ff19a53efb!2sSwastik%20Electric%20Co!5e0!3m2!1sen!2sin!4v1730123456789!5m2!1sen!2sin"
+                src={embedSrc}
                 width="100%"
                 height="300"
-                style={{ border: 0 }}
+                style={{ border: 0, borderRadius: "12px" }}
                 allowFullScreen=""
                 loading="lazy"
                 title="Swastik Electric Co. Location"
-              ></iframe>
+              />
+              <div className="p-3 bg-[#071027] text-center">
+                <a
+                  href={mapsAppLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 bg-brand text-[#0f172a] font-medium rounded-md shadow hover:opacity-90 transition"
+                >
+                  Open in Google Maps
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -128,3 +146,4 @@ export default function Contact() {
     </>
   );
 }
+

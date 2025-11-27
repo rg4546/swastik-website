@@ -87,7 +87,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-3">
               <FaEnvelope className="text-brand" />
-              swastikelectric238@gmail.com
+              info@swastikelectric.in
             </li>
           </ul>
           <div className="mt-5">
