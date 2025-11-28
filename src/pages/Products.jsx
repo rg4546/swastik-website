@@ -1,10 +1,23 @@
+// src/pages/Products.jsx
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import QuoteFormDynamic from "../components/QuoteFormDynamic";
+import BrandFilesModal from "../components/BrandFilesModal";
 
 export default function Products() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalBrand, setModalBrand] = useState(null);
+
+  const openBrandModal = (brand) => {
+    setModalBrand(brand);
+    setModalOpen(true);
+  };
+  const closeBrandModal = () => {
+    setModalBrand(null);
+    setModalOpen(false);
+  };
 
   const categories = [
     {
@@ -104,12 +117,22 @@ export default function Products() {
               {/* Brands List */}
               <div className="flex flex-wrap justify-center gap-3 mt-auto">
                 {cat.brands.map((b, idx) => (
-                  <span
-                    key={idx}
-                    className="text-xs text-gray-200 bg-brand/20 border border-brand/30 rounded-full px-3 py-1 hover:bg-brand/30 transition"
-                  >
-                    {b}
-                  </span>
+                  b === "Philips" ? (
+                    <button
+                      key={idx}
+                      onClick={() => openBrandModal(b)}
+                      className="text-xs cursor-pointer text-gray-200 bg-brand/20 border border-brand/30 rounded-full px-3 py-1 hover:bg-brand/30 transition"
+                    >
+                      {b} (Catalogues)
+                    </button>
+                  ) : (
+                    <span
+                      key={idx}
+                      className="text-xs text-gray-200 bg-brand/20 border border-brand/30 rounded-full px-3 py-1 hover:bg-brand/30 transition"
+                    >
+                      {b}
+                    </span>
+                  )
                 ))}
               </div>
             </motion.div>
@@ -136,6 +159,9 @@ export default function Products() {
           <QuoteFormDynamic isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
         </motion.div>
       </section>
+
+      {/* Brand files modal */}
+      <BrandFilesModal open={modalOpen} onClose={closeBrandModal} brand={modalBrand} />
     </>
   );
 }

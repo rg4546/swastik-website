@@ -16,8 +16,9 @@ export default function QuoteFormDynamic({ isOpen, onClose }) {
 
   const productBrands = {
     "Lighting Solutions": ["Philips", "Havells", "Orient", "Bajaj", "Crompton"],
+    "Wires (House & Commercial)": ["KEI","Havells","Anchor by Panasonic","Plaza","Microtek"],
     "Industrial & Residential Cables": ["KEI", "Havells", "Anchor by Panasonic", "Plaza"],
-    "Cable Jointing Kits": ["Elechem"],
+    "Cable Jointing Kits": ["Elechem", "Denson", "Raychem"],
     "Panels & Protection Devices": ["Schneider", "L&T", "Havells"],
     "Motors, Pumps & Starters": ["Havells", "Crompton", "Bentex", "Kirloskar"],
     "Modular Switches & Sockets": ["Anchor by Panasonic", "Havells", "Schneider", "L&T"],
@@ -78,36 +79,59 @@ export default function QuoteFormDynamic({ isOpen, onClose }) {
       const ackTemplateId = import.meta.env.VITE_EMAILJS_ACK_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      // 1️⃣ Send to admin email
-      await emailjs.send(serviceId, adminTemplateId, templateParams, publicKey);
+      // DEBUG: log env (remove later)
+      console.log("EmailJS env:", { serviceId, adminTemplateId, ackTemplateId, publicKey });
 
-      // 2️⃣ Send acknowledgement to user
-      await emailjs.send(serviceId, ackTemplateId, templateParams, publicKey);
+      if (!serviceId || !adminTemplateId || !ackTemplateId || !publicKey) {
+        throw new Error("Missing EmailJS environment variables (check Vercel env names and redeploy).");
+      }
 
-      // 3️⃣ WhatsApp Alert to Admin
+      // 1) Send to admin
+      const res1 = await emailjs.send(serviceId, adminTemplateId, templateParams, publicKey);
+      console.log("EmailJS admin send result:", res1);
+
+      // 2) Send acknowledgement to customer
+      const res2 = await emailjs.send(serviceId, ackTemplateId, templateParams, publicKey);
+      console.log("EmailJS ack send result:", res2);
+
+      // 3) WhatsApp Alert (use digits only)
       const whatsappMsg = encodeURIComponent(
-        `⚡ *New Quote Request*\n\n👤 *Name:* ${formData.name}\n📞 *Phone:* ${formData.phone}\n✉️ *Email:* ${formData.email}\n🕒 *Date:* ${new Date().toLocaleString()}\n\n📦 *Items Requested:*\n${products
-          .map(
-            (p, i) =>
-              `${i + 1}. ${p.category} - ${p.brand}\n   Type: ${p.type || "—"}\n   Qty: ${p.quantity}`
-          )
-          .join("\n\n")}\n\n✅ Please check your email for full details.`
+        `⚡ *New Quote Request*\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✉️ Email: ${formData.email}\n\nItems:\n${products
+          .map((p, i) => `${i + 1}. ${p.category} - ${p.brand}\n   Type: ${p.type || "—"}\n   Qty: ${p.quantity}`)
+          .join("\n\n")}`
       );
-      window.open(`https://wa.me/+919622128402?text=${whatsappMsg}`, "_blank");
+      // use digits only, no plus
+      window.open(`https://wa.me/919622128402?text=${whatsappMsg}`, "_blank");
 
       setSentSuccess(true);
+      setFormData({ name: "", phone: "", email: "", message: "" });
+      setProducts([emptyProduct]);
+
       setTimeout(() => {
         setSentSuccess(false);
         onClose();
-      }, 2500);
+      }, 2200);
     } catch (err) {
-      console.error("EmailJS send error:", err);
-      alert("Failed to send request. Please try again later.");
+      // show full error in console
+      console.error("EmailJS send error (full):", err);
+      // helpful message for UI
+      const friendly = err?.text || err?.message || JSON.stringify(err);
+      alert(`Failed to send request. ${friendly}`);
+      // fallback: still open WhatsApp with minimal info
+      try {
+        const whatsappMsg = encodeURIComponent(
+          `⚡ New Quote Request (email failed)\nName: ${formData.name}\nPhone: ${formData.phone}\nItems: ${products
+            .map((p, i) => `${i + 1}. ${p.category}-${p.brand} (${p.type}) x${p.quantity}`)
+            .join("; ")}`
+        );
+        window.open(`https://wa.me/919622128402?text=${whatsappMsg}`, "_blank");
+      } catch (werr) {
+        console.error("WhatsApp fallback failed:", werr);
+      }
     } finally {
       setSending(false);
     }
   };
-
   const handleClose = () => {
     setProducts([emptyProduct]);
     setFormData({ name: "", phone: "", email: "", message: "" });

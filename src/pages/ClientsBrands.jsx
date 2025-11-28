@@ -1,8 +1,23 @@
-import React from "react";
+// src/pages/ClientsBrands.jsx
+import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import BrandFilesModal from "../components/BrandFilesModal";
 
 export default function ClientsBrands() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalBrand, setModalBrand] = useState(null);
+
+  const openBrandModal = (brandName) => {
+    setModalBrand(brandName);
+    setModalOpen(true);
+  };
+
+  const closeBrandModal = () => {
+    setModalBrand(null);
+    setModalOpen(false);
+  };
+
   const brands = [
     { name: "Philips", img: "/brands/philips.png" },
     { name: "Havells", img: "/brands/havells.png" },
@@ -73,8 +88,16 @@ export default function ClientsBrands() {
             {brands.map((b, idx) => (
               <motion.div
                 key={idx}
-                className="relative group w-36 h-36 flex flex-col items-center justify-center bg-card/50 rounded-2xl shadow-lg border border-brand/20 hover:border-brand transition-all duration-300 hover:-translate-y-2"
+                className={`relative group w-36 h-36 flex flex-col items-center justify-center bg-card/50 rounded-2xl shadow-lg border border-brand/20 transition-all duration-300 ${
+                  b.name === "Philips" ? "cursor-pointer hover:border-brand hover:-translate-y-2" : "hover:border-brand hover:-translate-y-2"
+                }`}
                 whileHover={{ scale: 1.08 }}
+                onClick={() => b.name === "Philips" && openBrandModal(b.name)}
+                role={b.name === "Philips" ? "button" : undefined}
+                tabIndex={b.name === "Philips" ? 0 : undefined}
+                onKeyDown={(e) => {
+                  if (b.name === "Philips" && (e.key === "Enter" || e.key === " ")) openBrandModal(b.name);
+                }}
               >
                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-brand/10 blur-md transition-all duration-300"></div>
                 <img
@@ -120,7 +143,11 @@ export default function ClientsBrands() {
           </div>
         </motion.div>
       </section>
+
+      {/* Brand files modal */}
+      <BrandFilesModal open={modalOpen} onClose={closeBrandModal} brand={modalBrand} />
     </>
   );
 }
+
 
