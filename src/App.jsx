@@ -18,6 +18,7 @@ export default function App() {
         <div className="min-h-screen flex flex-col bg-base text-textlight">
           <Navbar />
           <main className="flex-grow pt-20">
+            <ScrollToTop offsetSelector=".nav" behavior="smooth" />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />

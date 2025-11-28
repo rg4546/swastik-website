@@ -11,7 +11,7 @@ export default function BrandFilesModal({ open, onClose, brand }) {
     Philips: [
       {
         label: "Home Decorative Lighting — JULY 2025",
-        href: "/pdfs/philips/home_decorative_lighting_july_2025.pdf",
+        href: "/pdfs/philips/homeDecorativeLightingCatalogue.pdf",
       },
       {
         label: "Professional SMB Price List 2025-26",
