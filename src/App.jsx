@@ -9,16 +9,19 @@ import Products from "./pages/Products";
 import Services from "./pages/Services";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
-import ClientsBrands from "./pages/ClientsBrands"; // we'll add this later
+import ClientsBrands from "./pages/ClientsBrands";
+import ScrollToTop from "./components/ScrollToTop"; // <- NEW
 
 export default function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
+        {/* place ScrollToTop inside the Router so it receives location changes */}
+        <ScrollToTop behavior="smooth" delay={60} />
+
         <div className="min-h-screen flex flex-col bg-base text-textlight">
           <Navbar />
           <main className="flex-grow pt-20">
-            <ScrollToTop offsetSelector=".nav" behavior="smooth" />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -35,6 +38,7 @@ export default function App() {
     </HelmetProvider>
   );
 }
+
 
 
 
