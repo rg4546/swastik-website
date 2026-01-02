@@ -59,7 +59,7 @@ export default function Home() {
           </motion.h1>
 
           <p className="mt-4 max-w-2xl text-gray-300 leading-relaxed drop-shadow-sm">
-            From residential wiring to industrial-scale electrical solutions, Swastik Electric Co. delivers quality, reliability, and innovation — lighting up Jammu since 2000.
+            From residential wiring to industrial-scale electrical solutions, Swastik Electric Co. delivers quality, reliability, and innovation — lighting up Jammu since 2014.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4 justify-center">

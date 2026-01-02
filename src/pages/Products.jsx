@@ -42,7 +42,7 @@ export default function Products() {
       title: "Panels & Protection Devices",
       desc: "Reliable switchgear, MCCBs, MCBs, and distribution panels that ensure safety, control, and efficiency in every power system.",
       img: "/products/panels.png",
-      brands: ["Schneider", "L&T Electrical and Automation", "Havells"],
+      brands: ["Schneider", "L&T Electrical and Automation", "Havells", "Bentex"],
     },
     {
       title: "Motors, Submersible Pumps & Starters",

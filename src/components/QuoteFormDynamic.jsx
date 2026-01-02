@@ -19,7 +19,7 @@ export default function QuoteFormDynamic({ isOpen, onClose }) {
     "Wires (House & Commercial)": ["KEI","Havells","Anchor by Panasonic","Plaza","Microtek"],
     "Industrial & Residential Cables": ["KEI", "Havells", "Anchor by Panasonic", "Plaza"],
     "Cable Jointing Kits": ["Elechem", "Denson", "Raychem"],
-    "Panels & Protection Devices": ["Schneider", "L&T", "Havells"],
+    "Panels, Switchgear & Protection Devices": ["Schneider", "L&T", "Havells", "Bentex"],
     "Motors, Pumps & Starters": ["Havells", "Crompton", "Bentex", "Kirloskar"],
     "Modular Switches & Sockets": ["Anchor by Panasonic", "Havells", "Schneider", "L&T"],
     "Industrial Accessories": ["Bentex", "Schneider", "Havells"],
