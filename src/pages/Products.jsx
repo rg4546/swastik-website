@@ -1,169 +1,181 @@
-// src/pages/Products.jsx
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
 import QuoteFormDynamic from "../components/QuoteFormDynamic";
 import BrandFilesModal from "../components/BrandFilesModal";
 
 export default function Products() {
+
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalBrand, setModalBrand] = useState(null);
-
-  const openBrandModal = (brand) => {
-    setModalBrand(brand);
-    setModalOpen(true);
-  };
-  const closeBrandModal = () => {
-    setModalBrand(null);
-    setModalOpen(false);
-  };
 
   const categories = [
     {
       title: "Industrial & Residential Cables",
-      desc: "Durable and certified cables for all voltage levels, available in copper and aluminum variants for both residential and industrial applications.",
+      desc: "Durable and certified cables for residential and industrial applications.",
       img: "/products/cables.png",
       brands: ["KEI", "Havells", "Anchor by Panasonic", "Plaza"],
     },
     {
       title: "Cable Jointing Kits",
-      desc: "High-quality heat shrink and cold shrink jointing kits for LT, HT, and XLPE cables ensuring reliable and long-lasting electrical insulation.",
+      desc: "Reliable jointing kits for LT, HT and XLPE cables.",
       img: "/products/jointingkits.png",
       brands: ["Elechem", "Denson", "Raychem"],
     },
     {
       title: "Lighting Solutions",
-      desc: "Premium LED lights, floodlights, panels, and decorative lighting options suitable for offices, hotels, homes, and industries.",
+      desc: "LED lights, floodlights, panels and decorative lighting solutions.",
       img: "/products/lighting.png",
       brands: ["Philips", "Orient", "Bajaj", "Havells", "Crompton"],
     },
     {
       title: "Panels & Protection Devices",
-      desc: "Reliable switchgear, MCCBs, MCBs, and distribution panels that ensure safety, control, and efficiency in every power system.",
+      desc: "MCBs, MCCBs and distribution panels ensuring electrical safety.",
       img: "/products/panels.png",
-      brands: ["Schneider", "L&T Electrical and Automation", "Havells", "Bentex"],
+      brands: ["Schneider", "L&T", "Havells", "Bentex"],
     },
     {
-      title: "Motors, Submersible Pumps & Starters",
-      desc: "High-performance electric motors, submersible pumps, DOL/Star-Delta motor starters, and changeovers for domestic and industrial applications.",
+      title: "Motors, Pumps & Starters",
+      desc: "Electric motors, submersible pumps and motor starters.",
       img: "/products/motors.png",
       brands: ["Havells", "Crompton", "Kirloskar", "Bentex"],
     },
     {
       title: "Modular Switches & Sockets",
-      desc: "Stylish and durable modular switches, sockets, and fittings designed to enhance both aesthetics and safety in every space.",
+      desc: "Modern modular switches and sockets for homes and offices.",
       img: "/products/switch.png",
-      brands: ["Anchor by Panasonic", "Havells", "Schneider", "L&T Electrical and Automation"],
+      brands: ["Anchor by Panasonic", "Havells", "Schneider", "L&T"],
     },
     {
-      title: "Industrial Accessories & Fittings",
-      desc: "Comprehensive range of conduit pipes, connectors, junction boxes, lugs, and all essential electrical accessories.",
+      title: "Industrial Accessories",
+      desc: "Conduit pipes, connectors, junction boxes and accessories.",
       img: "/products/industrial.png",
       brands: ["Tekson", "Havells", "Schneider", "L&T"],
     },
     {
-      title: "Line Materials & Industrial Supplies",
-      desc: "All types of line materials for commercial, electrical, and industrial projects supplied across Jammu & Kashmir.",
+      title: "Line Materials",
+      desc: "All types of electrical line materials for projects and infrastructure.",
       img: "/products/line.png",
-      brands: ["Schneider", "Anchor by Panasonic", "L&T Electrical and Automation","Havells"],
+      brands: ["Schneider", "Anchor by Panasonic", "L&T", "Havells"],
     },
   ];
 
   return (
     <>
       <Helmet>
-        <title>Product Catalogue | Swastik Electric Co.</title>
+        <title>Products | Swastik Electric Co.</title>
         <meta
           name="description"
-          content="Explore Swastik Electric Co.’s complete range of electrical products including cables, jointing kits, lighting, switchgear, motors, pumps, and accessories from trusted brands like Havells, Philips, Schneider, KEI, Elechem, and L&T."
+          content="Explore cables, lighting, switchgear, pumps and electrical materials supplied by Swastik Electric Co. in Jammu."
         />
       </Helmet>
 
-      <section className="pt-24 pb-16 px-6 bg-gradient-to-b from-base via-[#141c2b] to-base text-center min-h-screen overflow-hidden">
-        {/* Heading */}
-        <motion.h1
-          className="text-4xl md:text-5xl font-extrabold text-brand mb-6 tracking-wide"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Product Catalogue
-        </motion.h1>
+      <section className="pt-28 pb-20 px-6 bg-gradient-to-b from-base via-[#141c2b] to-base min-h-screen text-center">
 
-        <p className="text-gray-400 max-w-2xl mx-auto mb-14 text-base leading-relaxed">
-          Swastik Electric Co. brings you a comprehensive range of premium electrical materials and
-          industrial solutions from India’s most trusted brands — powering homes, industries, and infrastructure across Jammu & Kashmir.
+        <h1 className="text-4xl md:text-5xl font-bold text-brand mb-6">
+          Product Catalogue
+        </h1>
+
+        <p className="text-gray-400 max-w-2xl mx-auto mb-14">
+          Swastik Electric Co. supplies a complete range of electrical materials
+          from trusted brands including Schneider, KEI, Havells, Philips,
+          Anchor by Panasonic, Crompton, Bajaj and Orient.
         </p>
 
-        {/* Catalogue Grid */}
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
+        {/* Product Grid */}
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
           {categories.map((cat, index) => (
-            <motion.div
+
+            <div
               key={index}
-              className="relative overflow-hidden rounded-2xl border border-brand/30 bg-[#0f172a]/60 hover:bg-[#1a2335] glow p-5 flex flex-col items-center text-center transition-all duration-300 shadow-lg hover:shadow-xl"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="rounded-xl border border-brand/30 bg-[#0f172a]/60 p-5 shadow-md hover:bg-[#1a2335] transition"
             >
+
               <img
                 src={cat.img}
                 alt={cat.title}
-                className="w-full h-44 object-cover rounded-lg mb-4 transition-transform duration-300 hover:scale-105"
+                className="w-full h-44 object-cover rounded-md mb-4"
               />
-              <h3 className="text-lg font-semibold text-brand mb-2">{cat.title}</h3>
-              <p className="text-sm text-gray-300 mb-4 px-2">{cat.desc}</p>
 
-              {/* Brands List */}
-              <div className="flex flex-wrap justify-center gap-3 mt-auto">
-                {cat.brands.map((b, idx) => (
-                  b === "Philips" ? (
-                    <button
-                      key={idx}
-                      onClick={() => openBrandModal(b)}
-                      className="text-xs cursor-pointer text-gray-200 bg-brand/20 border border-brand/30 rounded-full px-3 py-1 hover:bg-brand/30 transition"
-                    >
-                      {b} (Catalogues)
-                    </button>
-                  ) : (
+              <h2 className="text-lg font-semibold text-brand mb-2">
+                {cat.title}
+              </h2>
+
+              <p className="text-sm text-gray-300 mb-4">
+                {cat.desc}
+              </p>
+
+              {/* Brands */}
+
+              <div className="flex flex-wrap gap-2 justify-center">
+
+                {cat.brands.map((brand, i) => {
+
+                  if (brand === "Philips") {
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => setModalOpen(true)}
+                        className="text-xs px-3 py-1 rounded-full bg-brand/20 border border-brand/30 hover:bg-brand/30 transition"
+                      >
+                        Philips Catalogues
+                      </button>
+                    );
+                  }
+
+                  return (
                     <span
-                      key={idx}
-                      className="text-xs text-gray-200 bg-brand/20 border border-brand/30 rounded-full px-3 py-1 hover:bg-brand/30 transition"
+                      key={i}
+                      className="text-xs px-3 py-1 rounded-full bg-brand/20 border border-brand/30"
                     >
-                      {b}
+                      {brand}
                     </span>
-                  )
-                ))}
+                  );
+
+                })}
+
               </div>
-            </motion.div>
+
+            </div>
+
           ))}
+
         </div>
 
         {/* CTA */}
-        <motion.div
-          className="mt-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
+
+        <div className="mt-16">
+
           <h2 className="text-2xl font-semibold text-brand mb-4">
-            Looking for the best rates or custom requirements?
+            Need pricing or product availability?
           </h2>
+
           <button
             onClick={() => setIsQuoteOpen(true)}
-            className="inline-block bg-brand text-base font-medium text-[#0f172a] px-6 py-3 rounded-full shadow-lg hover:bg-brand/90 transition"
+            className="bg-brand text-[#0f172a] px-6 py-3 rounded-lg font-medium hover:bg-brand/90 transition"
           >
             Request a Quote
           </button>
 
-          <QuoteFormDynamic isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
-        </motion.div>
+        </div>
+
       </section>
 
-      {/* Brand files modal */}
-      <BrandFilesModal open={modalOpen} onClose={closeBrandModal} brand={modalBrand} />
+      {/* Quote Form */}
+
+      <QuoteFormDynamic
+        isOpen={isQuoteOpen}
+        onClose={() => setIsQuoteOpen(false)}
+      />
+
+      {/* Philips Catalogue Modal */}
+
+      <BrandFilesModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        brand="Philips"
+      />
     </>
   );
 }
-
-

@@ -1,153 +1,225 @@
-// src/pages/ClientsBrands.jsx
+// import React, { useState } from "react";
+// import { Helmet } from "react-helmet-async";
+// import BrandFilesModal from "../components/BrandFilesModal";
+
+// export default function ClientsBrands() {
+//   const [modalOpen, setModalOpen] = useState(false);
+
+//   const brands = [
+//     { name: "Philips", img: "/brands/philips.png" },
+//     { name: "Havells", img: "/brands/havells.png", url: "https//havells.com/corporate/press-and-media/commercials-downloads" },
+//     { name: "Schneider", img: "/brands/schneider.png", url:"https://www.se.com/in/en/all-products/" },
+//     { name: "KEI", img: "/brands/kei.png" },
+//     { name: "Anchor by Panasonic", img: "/brands/anchor.png" },
+//     { name: "Bajaj", img: "/brands/bajaj.png" },
+//     { name: "Orient", img: "/brands/orient.png" },
+//     { name: "L&T", img: "/brands/l&t.png" },
+//     { name: "Elechem", img: "/brands/elechem.png" },
+//     { name: "Crompton", img: "/brands/crompton.png" },
+//   ];
+
+//   const clients = [
+//     { name: "JPDCL", img: "/clients/JPDCL.png" },
+//     { name: "PDD", img: "/clients/PDD.png" },
+//     { name: "Speed 4 Defence System", img: "/clients/speed4.png" },
+//     { name: "Shri Mata Vaishno Devi", img: "/clients/ShrineBoard.png" },
+//     { name: "Shivalaya", img: "/clients/shivalaya.png" },
+//     { name: "APCO", img: "/clients/apco.png" },
+//     { name: "Patel Engineering", img: "/clients/patel.png" },
+//     { name: "Coronet Engineers", img: "/clients/coronet.png" },
+//     { name: "Kapahi Contracts", img: "/clients/kapahi.png" },
+//     { name: "V.K. Sales", img: "/clients/vk.png" },
+//   ];
+
+//   return (
+//     <>
+//       <Helmet>
+//         <title>Clients & Brands | Swastik Electric Co.</title>
+//       </Helmet>
+
+//       <section className="pt-28 pb-24 px-6 min-h-screen bg-gradient-to-b from-base via-[#141c2b] to-base text-center">
+
+//         <h1 className="text-4xl md:text-5xl font-bold text-brand mb-14">
+//           Brands & Clients
+//         </h1>
+
+//         {/* Brands */}
+//         <h2 className="text-3xl font-semibold text-brand mb-8">
+//           Brands We Deal In
+//         </h2>
+
+//         <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10">
+//           {brands.map((b, idx) => (
+//             <div
+//               key={idx}
+//               className="flex flex-col items-center justify-center bg-card/50 rounded-xl border border-brand/20 p-6 cursor-pointer hover:border-brand"
+//               onClick={() => b.name === "Philips" && setModalOpen(true)}
+//             >
+//               <img src={b.img} alt={b.name} className="w-16 h-16 mb-2 object-contain" />
+//               <p className="text-gray-300 text-sm">{b.name}</p>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* Clients */}
+//         <h2 className="text-3xl font-semibold text-brand mt-20 mb-8">
+//           Our Clients
+//         </h2>
+
+//         <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10">
+//           {clients.map((c, idx) => (
+//             <div
+//               key={idx}
+//               className="flex flex-col items-center justify-center bg-card/50 rounded-xl border border-brand/20 p-6"
+//             >
+//               <img src={c.img} alt={c.name} className="w-16 h-16 mb-2 object-contain" />
+//               <p className="text-gray-300 text-sm text-center">{c.name}</p>
+//             </div>
+//           ))}
+//         </div>
+//       </section>
+
+//       <BrandFilesModal open={modalOpen} onClose={() => setModalOpen(false)} brand="Philips" />
+//     </>
+//   );
+// }
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
 import BrandFilesModal from "../components/BrandFilesModal";
 
 export default function ClientsBrands() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalBrand, setModalBrand] = useState(null);
 
-  const openBrandModal = (brandName) => {
-    setModalBrand(brandName);
-    setModalOpen(true);
-  };
+  const [modalOpen,setModalOpen]=useState(false)
 
-  const closeBrandModal = () => {
-    setModalBrand(null);
-    setModalOpen(false);
-  };
+  const brands=[
 
-  const brands = [
-    { name: "Philips", img: "/brands/philips.png" },
-    { name: "Havells", img: "/brands/havells.png" },
-    { name: "Schneider", img: "/brands/schneider.png" },
-    { name: "KEI", img: "/brands/kei.png" },
-    { name: "Anchor by Panasonic", img: "/brands/anchor.png" },
-    { name: "Bajaj", img: "/brands/bajaj.png" },
-    { name: "Orient", img: "/brands/orient.png" },
-    { name: "L&T", img: "/brands/l&t.png" },
-    { name: "Elechem", img: "/brands/elcehem.png" },
-    { name: "Crompton", img: "/brands/crompton.png" },
-  ];
+  {name:"Philips",img:"/brands/philips.png",catalog:true},
 
-  const clients = [
-    { name: "JPDCL", img: "/clients/JPDCL.png" },
-    { name: "PDD", img: "/clients/PDD.png" },
-    { name: "Speed 4 Defence System", img: "/clients/speed4.png" },
-    { name: "Shri Mata Vaishno Devi", img: "/clients/ShrineBoard.png" },
-    { name: "Shivalaya", img: "/clients/shivalaya.png" },
-    { name: "APCO", img: "/clients/apco.png" },
-    { name: "Patel Engineering", img: "/clients/patel.png" },
-    { name: "Coronet Engineers Pvt. Ltd.", img: "/clients/coronet.png" },
-    { name: "Kapahi Contracts Pvt. Ltd.", img: "/clients/kapahi.png" },
-    { name: "V.K. Sales & Construction Co.", img: "/clients/vk.png" },
-  ];
+  {name:"Havells",img:"/brands/havells.png",url:"https://havells.com/corporate/press-and-media/commercials-downloads"},
 
-  return (
-    <>
-      <Helmet>
-        <title>Clients & Brands | Swastik Electric Co.</title>
-        <meta
-          name="description"
-          content="Swastik Electric Co. proudly collaborates with top brands and clients including Philips, Havells, Schneider, KEI, JPDCL, Patel Engineering, and more."
-        />
-      </Helmet>
+  {name:"Schneider",img:"/brands/schneider.png",url:"https://www.se.com/in/en/all-products/"},
 
-      <section className="pt-28 pb-24 px-6 min-h-screen bg-gradient-to-b from-base via-[#141c2b] to-base text-center relative overflow-hidden">
-        {/* Animated background glow */}
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2 bg-brand/10 rounded-full blur-3xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-        ></motion.div>
+  {name:"KEI",img:"/brands/kei.png",url:"https://www.kei-ind.com/cables-wires/"},
 
-        {/* Page Heading */}
-        <motion.h1
-          className="text-4xl md:text-5xl font-extrabold text-brand mb-14 relative z-10 tracking-wide"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Our Trusted Brands & Clients
-        </motion.h1>
+  {name:"Anchor by Panasonic",img:"/brands/anchor.png",url:"https://lsin.panasonic.com/"},
 
-        {/* Brands Section */}
-        <motion.div
-          className="relative z-10 mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-3xl font-semibold text-brand mb-8">
-            Brands We Deal In
-          </h2>
+  {name:"Bajaj",img:"/brands/bajaj.png",url:"https://www.bajajelectricals.com/?srsltid=AfmBOopeAhcaQLZkcWk_IMscPhg-NUTma3z7SAwMms4Wi2fiZ8Y-KclE"},
 
-          <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10 justify-items-center">
-            {brands.map((b, idx) => (
-              <motion.div
-                key={idx}
-                className={`relative group w-36 h-36 flex flex-col items-center justify-center bg-card/50 rounded-2xl shadow-lg border border-brand/20 transition-all duration-300 ${
-                  b.name === "Philips" ? "cursor-pointer hover:border-brand hover:-translate-y-2" : "hover:border-brand hover:-translate-y-2"
-                }`}
-                whileHover={{ scale: 1.08 }}
-                onClick={() => b.name === "Philips" && openBrandModal(b.name)}
-                role={b.name === "Philips" ? "button" : undefined}
-                tabIndex={b.name === "Philips" ? 0 : undefined}
-                onKeyDown={(e) => {
-                  if (b.name === "Philips" && (e.key === "Enter" || e.key === " ")) openBrandModal(b.name);
-                }}
-              >
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-brand/10 blur-md transition-all duration-300"></div>
-                <img
-                  src={b.img}
-                  alt={b.name}
-                  className="w-16 h-16 object-contain mb-2 z-10"
-                />
-                <p className="text-sm text-gray-300 z-10 font-medium">{b.name}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+  {name:"Orient",img:"/brands/orient.png",url:"https://orientelectric.com/collections/all?srsltid=AfmBOoqXwgdts_sHIiiGOi-rKoKyZhBrtYoJ2VfUpVoCG0rZRGVQTGLJ"},
 
-        {/* Clients Section */}
-        <motion.div
-          className="relative z-10"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-3xl font-semibold text-brand mb-8">
-            Our Esteemed Clients
-          </h2>
+  {name:"L&T",img:"/brands/l&t.png",url:"https://smartshop.lk-ea.com/?srsltid=AfmBOorNqxhTANRshbA5Dy64HgUf1SqKswgIv4CU_OE1ioeyxkO7yv6E"},
 
-          <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10 justify-items-center">
-            {clients.map((c, idx) => (
-              <motion.div
-                key={idx}
-                className="relative group w-36 h-36 flex flex-col items-center justify-center bg-card/50 rounded-2xl shadow-lg border border-brand/20 hover:border-brand transition-all duration-300 hover:-translate-y-2"
-                whileHover={{ scale: 1.08 }}
-              >
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-brand/10 blur-md transition-all duration-300"></div>
-                <img
-                  src={c.img}
-                  alt={c.name}
-                  className="w-16 h-16 object-contain mb-2 z-10"
-                />
-                <p className="text-sm text-gray-300 z-10 font-medium text-center">
-                  {c.name}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
+  {name:"Elechem",img:"/brands/elechem.png",url:"https://www.elechem.in"},
 
-      {/* Brand files modal */}
-      <BrandFilesModal open={modalOpen} onClose={closeBrandModal} brand={modalBrand} />
-    </>
-  );
+  {name:"Crompton",img:"/brands/crompton.png",url:"https://www.crompton.co.in"}
+
+  ]
+
+  const clients=[
+  {name:"JPDCL",img:"/clients/JPDCL.png"},
+  {name:"PDD",img:"/clients/PDD.png"},
+  {name:"Speed 4 Defence System",img:"/clients/speed4.png"},
+  {name:"Shri Mata Vaishno Devi",img:"/clients/ShrineBoard.png"},
+  {name:"Shivalaya",img:"/clients/shivalaya.png"},
+  {name:"APCO",img:"/clients/apco.png"},
+  {name:"Patel Engineering",img:"/clients/patel.png"},
+  {name:"Coronet Engineers",img:"/clients/coronet.png"},
+  {name:"Kapahi Contracts",img:"/clients/kapahi.png"},
+  {name:"V.K. Sales",img:"/clients/vk.png"}
+  ]
+
+  const handleBrandClick=(brand)=>{
+
+  if(brand.catalog){
+  setModalOpen(true)
+  return
+  }
+
+  if(brand.url){
+  window.open(brand.url,"_blank")
+  }
+
+  }
+
+  return(
+  <>
+  <Helmet>
+  <title>Clients & Brands | Swastik Electric Co.</title>
+  </Helmet>
+
+  <section className="pt-28 pb-24 px-6 min-h-screen bg-gradient-to-b from-base via-[#141c2b] to-base text-center">
+
+  <h1 className="text-4xl md:text-5xl font-bold text-brand mb-14">
+  Brands & Clients
+  </h1>
+
+  {/* Brands */}
+
+  <h2 className="text-3xl font-semibold text-brand mb-8">
+  Brands We Deal In
+  </h2>
+
+  <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10">
+
+  {brands.map((b,idx)=>(
+  <div
+  key={idx}
+  onClick={()=>handleBrandClick(b)}
+  className="flex flex-col items-center justify-center bg-card/50 rounded-xl border border-brand/20 p-6 cursor-pointer hover:border-brand hover:-translate-y-1 transition"
+  >
+
+  <img
+  src={b.img}
+  alt={b.name}
+  className="w-16 h-16 mb-2 object-contain"
+  />
+
+  <p className="text-gray-300 text-sm text-center">
+  {b.name}
+  </p>
+
+  </div>
+  ))}
+
+  </div>
+
+  {/* Clients */}
+
+  <h2 className="text-3xl font-semibold text-brand mt-20 mb-8">
+  Our Clients
+  </h2>
+
+  <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10">
+
+  {clients.map((c,idx)=>(
+  <div
+  key={idx}
+  className="flex flex-col items-center justify-center bg-card/50 rounded-xl border border-brand/20 p-6"
+  >
+
+  <img
+  src={c.img}
+  alt={c.name}
+  className="w-16 h-16 mb-2 object-contain"
+  />
+
+  <p className="text-gray-300 text-sm text-center">
+  {c.name}
+  </p>
+
+  </div>
+  ))}
+
+  </div>
+
+  </section>
+
+  <BrandFilesModal
+  open={modalOpen}
+  onClose={()=>setModalOpen(false)}
+  brand="Philips"
+  />
+
+  </>
+  )
 }
-
-

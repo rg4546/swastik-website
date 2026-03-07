@@ -37,10 +37,10 @@ export default function Gallery() {
           Product & Showroom Gallery
         </motion.h1>
 
-        <p className="text-gray-400 max-w-2xl mx-auto mb-14 text-base leading-relaxed">
+        {/* <p className="text-gray-400 max-w-2xl mx-auto mb-14 text-base leading-relaxed">
           A glimpse into our product range, trusted brands, and the premium electrical materials
           we supply across Jammu & Kashmir.
-        </p>
+        </p> */}
 
         {/* Gallery Grid */}
         <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-items-center">
@@ -94,4 +94,3 @@ export default function Gallery() {
     </>
   );
 }
-

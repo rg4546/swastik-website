@@ -46,7 +46,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/" className="hover:text-brand transition">
+              <Link to="/about" className="hover:text-brand transition">
                 About Us
               </Link>
             </li>
@@ -55,11 +55,6 @@ export default function Footer() {
                 Products
               </Link>
             </li>
-            {/* <li>
-              <Link to="/services" className="hover:text-brand transition">
-                Services
-              </Link>
-            </li> */}
             <li>
               <Link to="/clients-brands" className="hover:text-brand transition">
                 Clients & Brands
@@ -83,7 +78,7 @@ export default function Footer() {
               Purmandal, morh, Chak Ratnu, Jammu and Kashmir 180010
             </li>
             <li className="flex items-center gap-3">
-              <FaPhoneAlt className="text-brand" /> +91 96221 28402
+              <FaPhoneAlt className="text-brand" /> +91 95968 99238, +91 96221 28402
             </li>
             <li className="flex items-center gap-3">
               <FaEnvelope className="text-brand" />
