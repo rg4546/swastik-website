@@ -114,3 +114,7 @@ color:#cbd5e1;
 footer a:hover{
 color:#00e5c0;
 }
+.brand-card:hover img{
+transform:scale(1.08);
+transition:0.25s;
+}
